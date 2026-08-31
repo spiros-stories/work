@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthdays — Envizion Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --grey: #888;
+      --light-grey: #e8e8e8;
+      --accent: #c9a96e;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(250,250,250,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--black);
+    }
+    .logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 4px;
+    }
+    .nav-back {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--grey);
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+
+    /* ─── GALLERY HERO ────────────────────────────────── */
+    .gallery-hero {
+      padding: 140px 80px 64px;
+      border-bottom: 1px solid var(--light-grey);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .section-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .gallery-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 300;
+      line-height: 1.05;
+    }
+    .gallery-hero h1 em { font-style: italic; }
+    .gallery-meta {
+      font-size: 11px;
+      color: var(--grey);
+      letter-spacing: 0.1em;
+      text-align: right;
+    }
+
+    /* ─── MASONRY GRID ────────────────────────────────── */
+    .gallery-section {
+      padding: 48px 80px 120px;
+    }
+    .masonry { display: flex; gap: 6px; align-items: flex-start; }
+    .masonry-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .gallery-item {
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease, opacity 0.4s;
+      opacity: 0;
+    }
+    .gallery-item img.loaded { opacity: 1; }
+    .gallery-item:hover img { transform: scale(1.03); }
+
+    /* ─── LIGHTBOX ────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      padding: 16px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .lightbox-prev:hover, .lightbox-next:hover { opacity: 1; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 48px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer .logo-main { color: var(--white); }
+    footer .logo-sub { color: rgba(255,255,255,0.4); }
+    .footer-copy {
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.08em;
+    }
+    .footer-cta {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--accent);
+      padding: 14px 28px;
+      transition: background 0.2s;
+    }
+    .footer-cta:hover { background: rgba(201,169,110,0.8); }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 20px 32px; }
+      .gallery-hero { padding: 120px 32px 48px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .gallery-meta { text-align: left; }
+      .gallery-section { padding: 32px 32px 80px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 48px 32px; }
+    }
+    @media (max-width: 600px) {
+      .masonry-col:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-main">Envizion Studios</span>
+  </a>
+  <a href="index.html#gallery" class="nav-back">
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M13 5H1M1 5L5 1M1 5L5 9"/>
+    </svg>
+    Back to Portfolio
+  </a>
+</nav>
+
+<div class="gallery-hero">
+  <div>
+    <p class="section-label">Portfolio</p>
+    <h1>Birth<em>days</em></h1>
+  </div>
+  <p class="gallery-meta">120 images · 3 birthday celebrations</p>
+</div>
+
+<div class="gallery-section">
+  <div class="masonry" id="gallery-grid"></div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
+  <button class="lightbox-prev" onclick="changeImg(-1); event.stopPropagation()">&#8249;</button>
+  <img id="lightbox-img" src="" alt="Birthday photo" />
+  <button class="lightbox-next" onclick="changeImg(1); event.stopPropagation()">&#8250;</button>
+  <span class="lightbox-counter" id="lightbox-counter"></span>
+</div>
+
+<footer>
+  <a href="index.html" class="logo">
+    <span class="logo-main">Envizion Studios</span>
+  </a>
+  <a href="index.html#contact" class="footer-cta">Book a Session</a>
+  <p class="footer-copy">&copy; 2026 Envizion Studios. All rights reserved.</p>
+</footer>
+
+<script>
+  const images = [
+    // New 1st Birthday 2026 (May 2026)
+    '1lyGk-xisbkOq8XBXQ9gF81lx2DUixnBk','1g6cbvmo0Q8K_5tOvpYjrkmh3xTHLOejB',
+    '1rFAhn6wkOURYETrlWDXB-gaOEOkWqVzx','1jLDA1nvvua6c8bkSmNbLzIVcdXjxM97K',
+    '1betS6pM6gnsEVS4M0LTWu2n0V93vyo1l','1_t5iDDN-ZDKDHT8UX-lD6GvMWot_Po2k',
+    '12CVEaJAp44sH2EyJAog06WM2-2hYUuEM','1CPHlDL8WB4rFBQLeTVA8G7rf2fVbkLU8',
+    '11f5cFDBX9wVp7IqIqJd5NLeYrKG5h9TL','1fSMrLFkAppmPTKPR-rf8y49ZrnjmVu3d',
+    '1LYXSKXbA-4Cxd1mMob8KVZOlngqZvz2E','10AwUhsVfov-nP1Uxk9Om1fZI4Jx4bQRc',
+    '1gvPSPhoO3zoGzvnslB5D-iV3kGmSluYe','1slS8sdG5u6CJfbMjKuW-GotMYQ9_yKna',
+    '1BqxYOck3Beu49540cKrHbTaQtkkOfYdM','1X4_jbHU-L70_lmLDAtQmJ0nCU7CmfLXZ',
+    '1jW053Ex7ZHskikixa3XFlBxOCdHdXwYR','1Asxam3V5EZayiQLLjpvwlN2lHuUDsg9f',
+    '1hTZgftYfnJ-UKmAB6_KplCMaVsQZ00LD','1uHmcRA_3zJPsjlVxotp1dQ4k09KIgKGL',
+    // Sienna's 1st Birthday (Sep 2024)
+    '1Dc3PHyri3Ns11pV--y2PYZf2EQOtfoW1','1VI3C6xmoLuCBNX34zDIuP7x0kdCWh-_B',
+    '12Vd1pnGXPQgej2ISLwsfLdtxglIBCE32','1XljWdcG_Pu6EtALVuHpsRR7P7ZaXCSoc',
+    '1FIDaOZyzouX-1r4nkI4KmoaQbc6wWT40','1XHv9HBaZ97ecemQBjPO8GjrAmrBHmH65',
+    '1B_RmDp64hEKT5Xo4p6qtWolmCcwWvbVo','1QNhZsi3PSs2_L8YrNaq__YU5MsZ6BwY2',
+    '1zx0TC_Qb-TsqFV8DCxIdOpgDwbMXE4W4','100hf8UXlAWoRl8NJBq7EOEPflx4kSTLc',
+    '16EVIYEZ5cdYRGigSDUmTprGF5boCgmmn','1BEtZYCOmrFxlMJiCF6GVUfv4gMT0JdlM',
+    '1k-qkz1ZE_Fd-DLok5D2PiwZBghEwTr2m','1gjKwOltVlrJ3wXvFJaJNW-dw7d6ZEgP9',
+    '1BEeOyLm5kyi5ii58dce89jUsyHTvhg_T','11COp4m_heuDWaRqY3xTr3CCXLFCmBwkF',
+    '1GMDTrpn60qoj7Pg7tALMiH29ycG6jwna','1NYJtT46SLIfIZBCFxzTwFY8ICL-gZPJc',
+    '1E5cTu9Ht_zjK2rCuHNbhIvDtJTa7z0uF','1uYonP-LPqEcaXOgngW7vOREj3TaTMde1',
+    '1tz3S-KrB2nJbOwOIBb31zq1OO4GBM8lo','14o0RlKBXGDPSzX-hwHzg3EtxzYY9HGfi',
+    '1x4JRd6Igm1AfDDe_1yH9BJ4uVX9XEigs','1hjdAXwRzQ-gGbnsy5ATqb4jFGbwI37RY',
+    '1mRUPMnHLwdnzlb7PrlN8HkCHUt9i3VxR','1CtI_45QVKBZYJUkVtNyoPwfOmMkqGx8O',
+    '1TzBKHEs5b3hTfaLI2ovB9AN-pzYA7A8f','1x9AInZL6TpI1FsrDr6UoRJVDkRXX5HUb',
+    '1QWSxdQ78fmpXqqasPREhl1GMB4tFFapf','11BwRpu1QxPZBxInfPHzRKjH3r0EZaC0L',
+    '1f34kIZtOdrBlFbT_enL5s815PDlbIgjG','1KdSa21UKxFHDdOiuNGK2vldAxQTIKg7j',
+    '1vaJFgStGOsog5bYu3avzOkdNH2Ne0IWy','1g3bbkv_c4t-qzRnBq-D7fJOjR6r933Af',
+    '1Bd4-mO-1gyDOfZkUs9UESyt3aAaHg3Ch','1Mw2a1mLksU97sM3PkXjQVgx1pRac6P-o',
+    '1holVu1J1BYmQyhhsHelZeEq8xx3n3PZ8','13y6Fvp3BMbmhW_sMibLdw70FDWofr_DJ',
+    '1ORxcRIiJ0CP78LlUSfpMtcNO-Bv39lWt','1XJG0SubcCaeSXFg0XMzMLU6f3tXCP9pE',
+    '1ehEWYH5kwZy9YmMI5mciHaLOLq1eE1sn','1tbFi7E0PuxzZHb0cT23aARJzYxCWxQIi',
+    '16oG4j4j_rUObqnTeaCsLP1MrQSnK2F-Y','1wP5v9hNPO5WEchI5LyfJ_QaiMaT1buiS',
+    '1KI0dLyhaSzMnyiajytrJ2aXUF3Gw26O8','11SR4w9BAJirveMQzM5v8liF7j1Oy2u37',
+    '1bo9ENvZ7TTRtyfKxMUEP506e74p7WUFj','1L3z29HafApgysnKViFVzMgaBtKl8iKS2',
+    '1dMdbNHwjFNzPXojR-I6uTkzQ8alGwzHQ','1mZqrIY2luBdLsw9W2StiW6tQ4MPDSkPu',
+    // Joshua's 1st Birthday (2024)
+    '1yv8p8Bn03-MDaewaSIE7AEBLNvJEQR8V','1vp8OhXUbjtBpq6hT1JOAwt8Cv2D7Glah',
+    '1LVsulHc0L4YQafrdpR6AiSgQjNw5GAxl','1_91akNyUA-FoiZI37wDwMQWfSvznfgOE',
+    '1_yFtTIUscd8WYwUf1nFUvijsPTRbK2yO','1J6OGBSxOEMK8ujggNVd1l93ADfRoHPPV',
+    '1ix6_a4OCN3UN6CyjhpiLw0Rn6zts1Mlc','1UTPdUoBUWFTyvsizRspD643agSijdUjw',
+    '17As3bPeRzUgPqzHFp0QXKI3yQsKf9f9o','1N0lmzS1bCPY9If4-vgdRlukNegBxdKnn',
+    '1SrQtymXkB5aS_F6W0SwFoBhy6AARfdTm','1y37zb9A3XUFY6mIP5JOq0_Ye7PhytcNo',
+    '1kouJEiRipuLnAoC655oCzR6uanD-8T1H','114cAsm5MS_FGf_hC06oYDtfJ0sXP-v_V',
+    '1bBLobpBVVbLqCWL-y2a125LB2eNoGTg7','1zkuRPHOZznpD-QA51qgWl2WNsbBAwED8',
+    '1LGbWjyx2Oq_staqQvJcwYEf6sV2H06Pq','13wdtzk8Y7FlV22NunVAoYC7NxCN4uRp7',
+    '1-4Vb50aQq6uC2Rv-SYvzRN2GefI8ORDJ','15ZAGPYWMroaq0-AS2i0bfSnGJvkomLz9',
+    '1VlyXXKsCaJFhOyyqvZUIAPecDHKsLU54','1JJqWY36DuU4ZyQLUOa4qDKfmhwRjXI09',
+    '1qqEWKogrTzAukIOos4IpsRNS-HGFYBUP','15ZAbELeuccClOfjhcJgDspB22IFeOEwE',
+    '1gcNv7Hr1raxzFL7pdSKD9agJADQnUNij','1mtnfChEEJQJMqpiZdJi2wIrCO-FhhUNG',
+    '1fSMOJt_EKK69E5mZLFOiiuYNS7MDgtQj','1FMcRM5Ja9t7xC0RMtBeEreEHUh_9Rtpk',
+    '1MyMFdhf74YFNRsI9u87bwpJDbWlNjSgN','1j6xECIKe8DwPia9VNgzWDp5S01YcObMu',
+    '1TogItfV7FW1lB5ycuapErW1e985-PzmK','1169JkSDtJprcxgjQssIoMQm9l0NtUXZA',
+    '1IljuIg2liGxN3wQ23MliNDGp7h8MQkXg','1h_LkLLSfF_EL2L9E4z81aHVAA4Dk1B5B',
+    '1GgbZrQ5smNRrZyvFAfOOw-GLz2cVwdPC','1W4qBExRpRl5NlnsamDBhhLSy5-xs9ZYk',
+    '13ViSrZvB1U6gmjJaF2GJ7KB_lxnvmFUh','1WbzA_BK77lbQH5IB8fPGvR7OW8vNbF-y',
+    '183an4sQfFUrMzpsmEwaxs4yWk1YjQqNI','1fA7U-oEve11bLTnmnGii2yrlNfSeCrDO',
+    '10VfJv3b_xEu_tZxgbIhr7-D_pIqoD7O0','1GQbIIX5-aYVZ2lwCnDKFDKorHxWuKXbY',
+    '1xmOT1lkx5lpc9_6Mae-iZ36ZiEVgUjne','1Kvw87sD4P415fALAPm9rSfrjLj4qZLwa',
+    '1OShgZ-fwGu3NEBAtlm3C4x80ujCJHBcM','1Xw5TAmLxusYN6TGBy8hOBbOpAiz2Wnh-',
+    '1PlnJ0N5i2fOSuQMHMPnD_DNKugQypgoa','1EAQ2ONlGW9wk604ADHPXhcZKlm8b-p8w',
+    '1yVwJQ-tjyO5p-OIShdQNpH5vdaBBZnhR','1FbJ_qmoLkSnrkrp0dv2VHA_XtmSC5R84'
+  ];
+
+  // Build masonry grid (left-to-right row order)
+  const grid = document.getElementById('gallery-grid');
+  const cols = [[], [], []];
+  images.forEach((id, i) => cols[i % 3].push(`
+    <div class="gallery-item" onclick="openImg(${i})">
+      <img src="https://drive.google.com/thumbnail?id=${id}&sz=w800"
+           alt="Birthday moment" loading="lazy" onload="this.classList.add('loaded')" />
+    </div>`));
+  grid.innerHTML = cols.map(c => `<div class="masonry-col">${c.join('')}</div>`).join('');
+
+  // Lightbox
+  let current = 0;
+  function openImg(i) {
+    current = i;
+    document.getElementById('lightbox-img').src = `https://drive.google.com/thumbnail?id=${images[i]}&sz=w1600`;
+    document.getElementById('lightbox-counter').textContent = `${i + 1} / ${images.length}`;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function changeImg(dir) {
+    current = (current + dir + images.length) % images.length;
+    openImg(current);
+  }
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+    if (e.key === 'ArrowLeft') changeImg(-1);
+    if (e.key === 'ArrowRight') changeImg(1);
+  });
+</script>
+</body>
+</html>

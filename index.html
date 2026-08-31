@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Envizion Studios — Photography & Film</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --grey: #888;
+      --light-grey: #e8e8e8;
+      --accent: #c9a96e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(250,250,250,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-bottom-color: var(--light-grey); }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--black);
+    }
+    .logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--black);
+      padding: 12px 24px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent); }
+
+    /* ─── HAMBURGER ───────────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--black);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 65px; left: 0; right: 0;
+      background: rgba(250,250,250,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-grey);
+      z-index: 99;
+      flex-direction: column;
+      padding: 16px 32px 24px;
+      gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--light-grey);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 80px 120px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .hero-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 112px);
+      font-weight: 300;
+      line-height: 1.0;
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+    .hero-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--grey);
+      max-width: 480px;
+      margin-bottom: 48px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-primary {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--black);
+      padding: 16px 32px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-secondary {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ─── SECTION WRAPPER ─────────────────────────────── */
+    section { padding: 120px 80px; }
+    .section-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .section-title em { font-style: italic; }
+    .section-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--grey);
+      max-width: 520px;
+    }
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin: 32px 0;
+    }
+
+    /* ─── GALLERY / PORTFOLIO ─────────────────────────── */
+    #gallery { background: var(--white); }
+    .gallery-header {
+      margin-bottom: 56px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+    .portfolio-card {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      text-decoration: none;
+      aspect-ratio: 3/4;
+      background: var(--light-grey);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+      opacity: 0;
+    }
+    .portfolio-card img.loaded { opacity: 1; }
+    .portfolio-card:hover img { transform: scale(1.05); }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 45%, transparent 70%);
+      transition: background 0.4s;
+    }
+    .portfolio-card:hover .portfolio-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.06) 100%);
+    }
+    .portfolio-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 32px 28px;
+      color: var(--white);
+    }
+    .portfolio-count {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .portfolio-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .portfolio-cta {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 2px;
+      display: inline-block;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .portfolio-card:hover .portfolio-cta {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Lightbox (kept for gallery pages) */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      padding: 16px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .lightbox-prev:hover, .lightbox-next:hover { opacity: 1; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+      background: #0e0b09;
+      color: var(--white);
+    }
+    .about-content {
+      padding: 120px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 560px;
+      justify-self: end;
+    }
+    .about-photo {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .about-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0e0b09 0%, rgba(14,11,9,0.3) 40%, transparent 65%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    #about .section-label { color: var(--accent); }
+    #about .section-title { color: var(--white); }
+    #about .section-body { color: rgba(255,255,255,0.55); }
+    #about .divider { background: var(--accent); }
+    .about-signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+      margin-top: 40px;
+    }
+    .about-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 4px;
+      height: 100%;
+    }
+    .about-mosaic .am-full {
+      grid-column: span 2;
+    }
+    .about-mosaic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s, transform 0.5s;
+      min-height: 200px;
+    }
+    .about-mosaic .am-tall img { min-height: 340px; }
+    .about-mosaic .am-wide img { min-height: 220px; aspect-ratio: 16/9; }
+    .about-mosaic img.loaded { opacity: 1; }
+    .about-mosaic .am-item {
+      overflow: hidden;
+    }
+    .about-mosaic .am-item:hover img { transform: scale(1.04); }
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      margin-top: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 4px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .instagram-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ─── PRICING ─────────────────────────────────────── */
+    #pricing { background: #f5f3ef; }
+    .pricing-intro {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+    }
+    .pricing-card {
+      background: var(--white);
+      padding: 48px 40px;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.featured {
+      background: var(--black);
+      color: var(--white);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--white);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      white-space: nowrap;
+    }
+    .pricing-tier {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .pricing-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+    .pricing-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-price sup {
+      font-size: 22px;
+      vertical-align: super;
+    }
+    .pricing-duration {
+      font-size: 11px;
+      color: var(--grey);
+      margin-bottom: 32px;
+    }
+    .pricing-card.featured .pricing-duration { color: rgba(255,255,255,0.45); }
+    .pricing-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--light-grey);
+      margin-bottom: 32px;
+    }
+    .pricing-card.featured .pricing-divider { background: rgba(255,255,255,0.2); }
+    .pricing-tagline {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--grey);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .pricing-card.featured .pricing-tagline { color: rgba(255,255,255,0.55); }
+    .pricing-sub-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      margin-top: 24px;
+    }
+    .pricing-card.featured .pricing-sub-label { color: rgba(201,169,110,0.85); }
+    .ideally-for-list {
+      margin-bottom: 0;
+    }
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 8px;
+    }
+    .pricing-features li {
+      font-size: 12px;
+      line-height: 1.6;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--light-grey);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--black);
+    }
+    .pricing-card.featured .pricing-features li {
+      border-bottom-color: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.8);
+    }
+    .pricing-features li::before {
+      content: '—';
+      color: var(--accent);
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px;
+      transition: background 0.2s, color 0.2s;
+      border: 1px solid var(--black);
+      color: var(--black);
+    }
+    .pricing-cta:hover { background: var(--black); color: var(--white); }
+    .pricing-card.featured .pricing-cta {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+    .pricing-card.featured .pricing-cta:hover { background: var(--white); color: var(--black); }
+    .addons {
+      margin-top: 64px;
+    }
+    .addons-title {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      background: var(--white);
+      padding: 20px 28px;
+      border: 1px solid var(--black);
+      transition: background 0.2s, color 0.2s;
+    }
+    .addons-title:hover { background: var(--black); color: var(--white); }
+    .addons-title:hover svg { color: var(--white); }
+    .addons-title svg { transition: transform 0.25s, color 0.2s; flex-shrink: 0; color: var(--black); }
+    .addons-title.open svg { transform: rotate(180deg); }
+    .addons-body {
+      display: none;
+      background: var(--white);
+      border: 1px solid var(--black);
+      border-top: none;
+      padding: 28px;
+    }
+    .addons-body.open { display: block; }
+    .addons-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .addons-table th {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-align: left;
+      padding: 0 0 12px;
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .addons-table th:last-child { text-align: right; }
+    .addons-table td {
+      font-size: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--light-grey);
+      color: var(--black);
+      line-height: 1.5;
+    }
+    .addons-table td:last-child {
+      text-align: right;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      white-space: nowrap;
+      padding-left: 24px;
+    }
+    .addons-table td small {
+      display: block;
+      font-size: 10px;
+      color: var(--grey);
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 2px;
+    }
+    .pricing-note {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--grey);
+      line-height: 1.8;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────────── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--light-grey);
+      padding: 12px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-bottom-color: var(--black);
+    }
+    .form-group textarea {
+      resize: none;
+      height: 120px;
+    }
+    .form-group select {
+      appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+    }
+    .form-submit {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: none;
+      padding: 18px 48px;
+      cursor: pointer;
+      margin-top: 8px;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--accent); }
+
+    .contact-info { padding-top: 8px; }
+    .contact-item {
+      margin-bottom: 48px;
+    }
+    .contact-item-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .contact-item-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+    }
+    .contact-item-value a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--light-grey);
+      transition: border-color 0.2s;
+    }
+    .contact-item-value a:hover { border-color: var(--accent); }
+
+    /* Availability */
+    .avail-block { margin-top: 8px; }
+    .avail-legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--grey);
+    }
+    .avail-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .avail-dot.holiday { background: var(--accent); }
+    .avail-dot.weekend { background: var(--black); }
+    .avail-dot.pubhol { background: #7ab5a0; }
+    .avail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .avail-period {
+      padding: 12px 14px;
+      border-left: 3px solid transparent;
+    }
+    .avail-period.holiday { border-left-color: var(--accent); background: rgba(201,169,110,0.08); }
+    .avail-period.pubhol { border-left-color: #7ab5a0; background: rgba(122,181,160,0.08); }
+    .avail-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .avail-dates {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+    }
+    .avail-note {
+      font-size: 10px;
+      color: var(--grey);
+      margin-top: 3px;
+    }
+    .avail-footer {
+      font-size: 11px;
+      color: var(--black);
+      padding: 10px 14px;
+      background: rgba(10,10,10,0.04);
+      letter-spacing: 0.05em;
+    }
+
+    /* Form error + success */
+    .form-error-banner:not(:empty) {
+      padding: 12px 16px;
+      background: #fdf0f0;
+      border-left: 3px solid #c0392b;
+      font-size: 12px;
+      color: #c0392b;
+      margin-bottom: 16px;
+    }
+    .field-error:not(:empty) {
+      display: block;
+      font-size: 10px;
+      color: #c0392b;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+    .form-success {
+      display: none;
+      padding: 24px;
+      background: #f0f7f0;
+      border-left: 3px solid var(--accent);
+      font-size: 13px;
+      color: var(--black);
+      line-height: 1.7;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 64px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer .logo-main { color: var(--white); }
+    footer .logo-sub { color: rgba(255,255,255,0.4); }
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy {
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 20px 32px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-cta { display: none; }
+      section { padding: 80px 32px; }
+      #home { min-height: auto; padding-bottom: 64px; }
+      .hero-text { padding: 80px 32px 48px; }
+      #about { grid-template-columns: 1fr; }
+      .about-content { padding: 80px 32px; max-width: 100%; justify-self: start; }
+      .about-photo { min-height: 480px; order: -1; }
+      .about-photo::before { background: linear-gradient(to bottom, transparent 60%, #0e0b09 100%); }
+      .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
+      .pricing-card.featured { margin: -16px 0; }
+      #contact { grid-template-columns: 1fr; padding: 80px 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 32px; text-align: center; padding: 48px 32px; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .portfolio-card { aspect-ratio: 4/3; }
+      .pricing-intro { flex-direction: column; align-items: flex-start; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    <span class="logo-main">Envizion Studios</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Session</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#gallery" onclick="closeMenu()">Work</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#contact" onclick="closeMenu()" style="color:var(--accent);">Book a Session</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Sydney · People · Moments · Stories</p>
+    <h1 class="hero-heading">
+      Every person has a <em>story</em> worth telling.
+    </h1>
+    <p class="hero-body">
+      Birthdays. Milestones. Communities. The people who show up and the moments that matter.
+      I photograph people exactly as they are — candid, warm, and real.
+    </p>
+    <div class="hero-actions">
+      <a href="#gallery" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Book a Session</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY / PORTFOLIO -->
+<section id="gallery">
+  <div class="gallery-header">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">Browse by <em>occasion</em></h2>
+  </div>
+  <div class="portfolio-grid">
+
+    <a href="gallery-birthdays.html" class="portfolio-card">
+      <img src="https://drive.google.com/thumbnail?id=1kouJEiRipuLnAoC655oCzR6uanD-8T1H&sz=w1200"
+           alt="Birthdays" loading="lazy" onload="this.classList.add('loaded')" />
+      <div class="portfolio-overlay"></div>
+      <div class="portfolio-info">
+        <h3 class="portfolio-title">Birthdays</h3>
+        <span class="portfolio-cta">View Gallery</span>
+      </div>
+    </a>
+
+    <a href="gallery-babyshowers.html" class="portfolio-card">
+      <img src="https://drive.google.com/thumbnail?id=1Mr46hl9VNe9VlCafn7LBWgipdq2yZ1FK&sz=w1200"
+           alt="Baby Showers" loading="lazy" onload="this.classList.add('loaded')" />
+      <div class="portfolio-overlay"></div>
+      <div class="portfolio-info">
+        <h3 class="portfolio-title">Baby Showers</h3>
+        <span class="portfolio-cta">View Gallery</span>
+      </div>
+    </a>
+
+    <a href="gallery-stories.html" class="portfolio-card">
+      <img src="https://drive.google.com/thumbnail?id=12he2H5m9CQIfMJX4DP1zIHFLrIffmL-q&sz=w1200"
+           alt="Special Occasions" loading="lazy" onload="this.classList.add('loaded')" />
+      <div class="portfolio-overlay"></div>
+      <div class="portfolio-info">
+        <h3 class="portfolio-title">Special Occasions</h3>
+        <span class="portfolio-cta">View Gallery</span>
+      </div>
+    </a>
+
+    <a href="gallery-community.html" class="portfolio-card">
+      <img src="https://drive.google.com/thumbnail?id=1c7aW-f4203zYRWyfwmvDgP7FFbmn1D_m&sz=w1200"
+           alt="Community Events" loading="lazy" onload="this.classList.add('loaded')" />
+      <div class="portfolio-overlay"></div>
+      <div class="portfolio-info">
+        <h3 class="portfolio-title">Community Events</h3>
+        <span class="portfolio-cta">View Gallery</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-content">
+    <p class="section-label">The Photographer</p>
+    <h2 class="section-title">Hi, I'm <em>Spiro</em></h2>
+    <div class="divider"></div>
+    <p class="section-body">
+      I'm a Sydney-based photographer with a passion for capturing the moments that matter most —
+      the emotions, the connections, and the details that make every celebration unique.
+    </p>
+    <p class="section-body" style="margin-top: 20px;">
+      I believe great photography isn't about posing — it's about being present.
+      I work quietly in the background so you and your guests can simply enjoy the day,
+      while I focus on capturing every real moment as it unfolds.
+    </p>
+    <p class="section-body" style="margin-top: 20px;">
+      Get in touch today if you'd like your event captured. I look forward to working with you!
+    </p>
+    <div class="about-signature">— Spiro</div>
+  </div>
+  <div class="about-photo">
+    <img src="spiro-about.jpg" alt="Spiro — Envizion Studios photographer" />
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-intro">
+    <div>
+      <p class="section-label">Investment</p>
+      <h2 class="section-title"><em>Pricing</em></h2>
+    </div>
+    <p class="section-body" style="max-width: 340px; text-align: right;">
+      Three packages built around the size and feel of your event.
+      All packages include a private online gallery and high-resolution downloads.
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- Tier 1 -->
+    <div class="pricing-card">
+      <p class="pricing-name">The Moment</p>
+      <p class="pricing-price"><sup>$</sup>399</p>
+      <p class="pricing-duration">Up to 2 hours coverage</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-sub-label">Ideally For</p>
+      <ul class="pricing-features ideally-for-list">
+        <li>Children's birthdays</li>
+        <li>Small family birthdays</li>
+        <li>Baby showers</li>
+        <li>Gender reveals</li>
+        <li>Family lunches or dinners</li>
+        <li>Small community gatherings</li>
+      </ul>
+      <p class="pricing-sub-label">Includes</p>
+      <ul class="pricing-features" style="margin-bottom: 40px;">
+        <li>One photographer</li>
+        <li>50–100 handpicked &amp; professionally edited images</li>
+      </ul>
+      <a href="#contact" class="pricing-cta">Enquire Now</a>
+    </div>
+
+    <!-- Tier 2 — Featured -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge">⭐ Most Popular</div>
+      <p class="pricing-name">The Full Story</p>
+      <p class="pricing-price"><sup>$</sup>599</p>
+      <p class="pricing-duration">Up to 4 hours coverage</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-sub-label">Ideally For</p>
+      <ul class="pricing-features ideally-for-list">
+        <li>18th, 21st, 30th, 40th, 50th birthdays</li>
+        <li>Larger baby showers</li>
+        <li>Engagement parties</li>
+        <li>Family celebrations</li>
+        <li>Cultural celebrations</li>
+        <li>Community events with multiple activities or speakers</li>
+      </ul>
+      <p class="pricing-sub-label">Includes</p>
+      <ul class="pricing-features" style="margin-bottom: 40px;">
+        <li>One photographer</li>
+        <li>100–200 handpicked &amp; professionally edited images</li>
+        <li>Sneak peek images within 48 hours</li>
+      </ul>
+      <a href="#contact" class="pricing-cta">Enquire Now</a>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="pricing-card">
+      <p class="pricing-name">The Chapter</p>
+      <p class="pricing-price"><sup>$</sup>899</p>
+      <p class="pricing-duration">Up to 6 hours coverage</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-sub-label">Ideally For</p>
+      <ul class="pricing-features ideally-for-list">
+        <li>Large engagement parties</li>
+        <li>Cultural events and functions</li>
+        <li>Community celebrations</li>
+        <li>Major milestone birthdays</li>
+        <li>Family reunions</li>
+        <li>Multi-part events across several locations</li>
+        <li>Events with 100+ guests</li>
+      </ul>
+      <p class="pricing-sub-label">Includes</p>
+      <ul class="pricing-features" style="margin-bottom: 40px;">
+        <li>1–2 photographers</li>
+        <li>300+ professionally edited images</li>
+        <li>Sneak peek images within 48 hours</li>
+        <li>Priority editing</li>
+        <li>Dedicated portrait session (table by table, group or family)</li>
+      </ul>
+      <a href="#contact" class="pricing-cta">Enquire Now</a>
+    </div>
+  </div>
+
+  <div class="addons">
+    <p class="addons-title" onclick="toggleAddons(this)">
+      Optional Add-Ons
+      <svg width="12" height="7" viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l5 5 5-5"/></svg>
+    </p>
+    <div class="addons-body">
+      <table class="addons-table">
+        <thead>
+          <tr>
+            <th>Add-On</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Additional Hour</td>
+            <td>$149</td>
+          </tr>
+          <tr>
+            <td>Social Media Highlight Images Reel<small>Up to 30 seconds</small></td>
+            <td>$249</td>
+          </tr>
+          <tr>
+            <td>Social Media Highlight Video Clips Reel<small>30–60 seconds</small></td>
+            <td>$299</td>
+          </tr>
+          <tr>
+            <td>Extended Highlight Film<small>2–3 minutes · requires additional videographer hire</small></td>
+            <td>$449</td>
+          </tr>
+          <tr>
+            <td>Express Delivery<small>Within 72 hours</small></td>
+            <td>$149</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="pricing-note">
+    Not sure which package is right for you? <a href="#contact" style="color: var(--black); border-bottom: 1px solid var(--grey);">Get in touch</a> — I'm happy to build something around your event.<br>
+    Travel fees may apply beyond 30km from Sydney CBD.
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Let's capture<br>your <em>story</em></h2>
+    <div class="divider"></div>
+    <p class="section-body">
+      Tell me about your event — the date, the people, the moments you want to hold onto.
+      I'll come back to you within 24 hours.
+    </p>
+
+    <div style="margin-top: 48px;">
+      <div class="contact-item">
+        <p class="contact-item-label">Based in</p>
+        <p class="contact-item-value">Sydney, Australia</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="form-error-banner" data-fs-error></div>
+    <form class="contact-form" id="enquiry-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" placeholder="Jane" required data-fs-field />
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" placeholder="Smith" required data-fs-field />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="jane@example.com" required data-fs-field />
+        <span class="field-error" data-fs-error="email"></span>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+61 400 000 000" data-fs-field />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="event-type">Type of Event</label>
+          <select id="event-type" name="event-type" required data-fs-field>
+            <option value="" disabled selected>Select event type</option>
+            <option>1st Birthday</option>
+            <option>Birthday Party</option>
+            <option>Baby Shower</option>
+            <option>Naming Day / Baptism</option>
+            <option>Engagement Party</option>
+            <option>Family Portraits</option>
+            <option>Newborn Session</option>
+            <option>Community Event</option>
+            <option>Not-for-Profit / Charity</option>
+            <option>Business / Brand</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="event-date">Event Date</label>
+          <input type="date" id="event-date" name="event-date" required data-fs-field />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="occasion">Special Occasion or Theme</label>
+        <input type="text" id="occasion" name="occasion" placeholder="e.g. Turning 1, Jungle theme, Gender reveal..." data-fs-field />
+      </div>
+      <div class="form-group">
+        <label for="location">Preferred Location / Venue</label>
+        <input type="text" id="location" name="location" placeholder="e.g. Home, park, venue name..." data-fs-field />
+      </div>
+      <div class="form-group">
+        <label for="message">Tell me about your event</label>
+        <textarea id="message" name="message" placeholder="Who will be there, what moments matter most, any specific shots you have in mind..." data-fs-field></textarea>
+      </div>
+      <div class="form-group">
+        <label for="package">Package of Interest</label>
+        <select id="package" name="package" data-fs-field>
+          <option value="" disabled selected>Select a package</option>
+          <option>The Moment — $399</option>
+          <option>The Full Story — $599 (Most Popular)</option>
+          <option>The Chapter — $899</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit" data-fs-submit-btn>Send Enquiry</button>
+    </form>
+    <div class="form-success" data-fs-success>
+      <strong>Thank you — I'll be in touch soon.</strong><br>
+      Your enquiry has been received. I typically respond within 24 hours.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#home" class="logo">
+    <span class="logo-main">Envizion Studios</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="#gallery">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://instagram.com/spiros.stories" target="_blank">Instagram</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2026 Envizion Studios. All rights reserved.</p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ── Form (Formspree) ────────────────────────────────────
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#enquiry-form', formId: 'mqeokgkd' });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // Collapsible Add-Ons
+  function toggleAddons(el) {
+    el.classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+  }
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>

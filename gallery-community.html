@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Events — Envizion Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --grey: #888;
+      --light-grey: #e8e8e8;
+      --accent: #c9a96e;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(250,250,250,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--black);
+    }
+    .logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 4px;
+    }
+    .nav-back {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--grey);
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .gallery-hero {
+      padding: 140px 80px 64px;
+      border-bottom: 1px solid var(--light-grey);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .section-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .gallery-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 300;
+      line-height: 1.05;
+    }
+    .gallery-hero h1 em { font-style: italic; }
+    .gallery-hero-desc {
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--grey);
+      max-width: 340px;
+      text-align: right;
+    }
+    .gallery-section { padding: 48px 80px 120px; }
+    .masonry { display: flex; gap: 6px; align-items: flex-start; }
+    .masonry-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .gallery-item {
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease, opacity 0.4s;
+      opacity: 0;
+    }
+    .gallery-item img.loaded { opacity: 1; }
+    .gallery-item:hover img { transform: scale(1.03); }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 32px;
+      font-size: 28px; color: white; cursor: pointer; background: none; border: none; line-height: 1;
+    }
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: white; font-size: 32px;
+      cursor: pointer; padding: 16px; opacity: 0.7; transition: opacity 0.2s;
+    }
+    .lightbox-prev:hover, .lightbox-next:hover { opacity: 1; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-counter {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-size: 10px; font-weight: 500; letter-spacing: 0.2em; color: rgba(255,255,255,0.45);
+    }
+    footer {
+      background: var(--black); color: var(--white);
+      padding: 48px 80px; display: flex; align-items: center; justify-content: space-between;
+    }
+    footer .logo-main { color: var(--white); }
+    footer .logo-sub { color: rgba(255,255,255,0.4); }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.08em; }
+    .footer-cta {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; color: var(--white); background: var(--accent);
+      padding: 14px 28px; transition: background 0.2s;
+    }
+    .footer-cta:hover { background: rgba(201,169,110,0.8); }
+    @media (max-width: 1024px) {
+      nav { padding: 20px 32px; }
+      .gallery-hero { padding: 120px 32px 48px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .gallery-hero-desc { text-align: left; max-width: 100%; }
+      .gallery-section { padding: 32px 32px 80px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 48px 32px; }
+    }
+    @media (max-width: 600px) { .masonry-col:nth-child(3) { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-main">Envizion Studios</span>
+  </a>
+  <a href="index.html#gallery" class="nav-back">
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M13 5H1M1 5L5 1M1 5L5 9"/>
+    </svg>
+    Back to Portfolio
+  </a>
+</nav>
+
+<div class="gallery-hero">
+  <div>
+    <p class="section-label">Portfolio</p>
+    <h1>Community <em>Events</em></h1>
+  </div>
+  <p class="gallery-hero-desc">Giving back and showing up — people in purpose, connection, and community. The Jeremiah Project captured in moments that matter.</p>
+</div>
+
+<div class="gallery-section">
+  <div class="masonry" id="gallery-grid"></div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&#215;</button>
+  <button class="lightbox-prev" onclick="changeImg(-1); event.stopPropagation()">&#8249;</button>
+  <img id="lightbox-img" src="" alt="Community event photo" />
+  <button class="lightbox-next" onclick="changeImg(1); event.stopPropagation()">&#8250;</button>
+  <span class="lightbox-counter" id="lightbox-counter"></span>
+</div>
+
+<footer>
+  <a href="index.html" class="logo">
+    <span class="logo-main">Envizion Studios</span>
+  </a>
+  <a href="index.html#contact" class="footer-cta">Book a Session</a>
+  <p class="footer-copy">&copy; 2026 Envizion Studios. All rights reserved.</p>
+</footer>
+
+<script>
+  const images = [
+    // Jeremiah Project Christmas 2023
+    '1c7aW-f4203zYRWyfwmvDgP7FFbmn1D_m','1_pRU2plHXJDAdBgOe5skgVXAlbkMnOLS',
+    '1HBWXx6b_I-JoJcIleZrYmxwGlNp3zpuu','1S6QeDphVMhi6foeGVasilINOoQJH8fCC',
+    '1_qWh2ktBzn8QZ2KOL4kZhgXh9lO7cbUz','1oge4EHdOjzbcD9NIoY9srHzbOrwnjYAt',
+    '1WlQdWlaaIQlBkCh3Rm32Tf80nfy6gtIr','1jDA5L4TPY3iSPSd9WJMOzhFtRZ1gEm_Y',
+    '1ysOutlU5V4SDG0lDknCb5JhGlWDFyY5w','1j97ZL5431x1FprVe5nvI1lh8nSRKCY-e',
+    '1AnMZPCiG3JTzf6eT4B0EWO_rjkfizyBp'
+  ];
+
+  const grid = document.getElementById('gallery-grid');
+  const cols = [[], [], []];
+  images.forEach((id, i) => cols[i % 3].push(`
+    <div class="gallery-item" onclick="openImg(${i})">
+      <img src="https://drive.google.com/thumbnail?id=${id}&sz=w800"
+           alt="Community event moment" loading="lazy" onload="this.classList.add('loaded')" />
+    </div>`));
+  grid.innerHTML = cols.map(c => `<div class="masonry-col">${c.join('')}</div>`).join('');
+
+  let current = 0;
+  function openImg(i) {
+    current = i;
+    document.getElementById('lightbox-img').src = `https://drive.google.com/thumbnail?id=${images[i]}&sz=w1600`;
+    document.getElementById('lightbox-counter').textContent = `${i + 1} / ${images.length}`;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function changeImg(dir) {
+    current = (current + dir + images.length) % images.length;
+    openImg(current);
+  }
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+    if (e.key === 'ArrowLeft') changeImg(-1);
+    if (e.key === 'ArrowRight') changeImg(1);
+  });
+</script>
+</body>
+</html>
