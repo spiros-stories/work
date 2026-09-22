@@ -465,21 +465,15 @@
     /* ─── PRICING ─────────────────────────────────────── */
     #pricing { background: #f5f3ef; }
     .pricing-intro {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
       margin-bottom: 64px;
+    }
+    @media (min-width: 1025px) {
+      .pricing-intro { padding-left: 40px; }
     }
     .pricing-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 2px;
-    }
-    @media (min-width: 1025px) {
-      /* Cards carry their own 40px padding, which otherwise makes card
-         text sit 40px right of the section heading/body text above.
-         Bleed the grid out by that same amount so everything lines up. */
-      .pricing-grid { margin: 0 -40px; }
     }
     .pricing-card {
       background: var(--white);
@@ -927,7 +921,6 @@
     @media (max-width: 500px) {
       .portfolio-grid { grid-template-columns: 1fr; }
       .portfolio-card { aspect-ratio: 4/3; }
-      .pricing-intro { flex-direction: column; align-items: flex-start; gap: 32px; }
     }
   </style>
 </head>
@@ -1057,11 +1050,9 @@
 <!-- PRICING -->
 <section id="pricing">
   <div class="pricing-intro">
-    <div>
-      <p class="section-label">Investment</p>
-      <h2 class="section-title"><em>Pricing</em></h2>
-    </div>
-    <p class="section-body" style="max-width: 340px; text-align: right;">
+    <p class="section-label">Investment</p>
+    <h2 class="section-title"><em>Pricing</em></h2>
+    <p class="section-body">
       Three packages built around the size and feel of your event.
       All packages include a private online gallery and high-resolution downloads.
     </p>
