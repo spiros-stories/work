@@ -348,14 +348,43 @@
     }
     .section-crosslink a:hover { color: var(--accent); }
 
-    /* ─── TRAVEL FEES ─────────────────────────────────── */
-    #travel { padding: 100px 80px 100px 120px; max-width: 720px; }
-    .travel-table {
+    /* ─── OPTIONAL ADD-ONS ────────────────────────────── */
+    .addons {
+      margin-top: 64px;
+    }
+    .addons-title {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      background: var(--white);
+      padding: 20px 28px;
+      border: 1px solid var(--black);
+      transition: background 0.2s, color 0.2s;
+    }
+    .addons-title:hover { background: var(--black); color: var(--white); }
+    .addons-title:hover svg { color: var(--white); }
+    .addons-title svg { transition: transform 0.25s, color 0.2s; flex-shrink: 0; color: var(--black); }
+    .addons-title.open svg { transform: rotate(180deg); }
+    .addons-body {
+      display: none;
+      background: var(--white);
+      border: 1px solid var(--black);
+      border-top: none;
+      padding: 28px;
+    }
+    .addons-body.open { display: block; }
+    .addons-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 32px;
     }
-    .travel-table th {
+    .addons-table th {
       font-size: 9px;
       font-weight: 500;
       letter-spacing: 0.2em;
@@ -365,17 +394,27 @@
       padding: 0 0 12px;
       border-bottom: 1px solid var(--light-grey);
     }
-    .travel-table th:last-child { text-align: right; }
-    .travel-table td {
-      font-size: 13px;
-      padding: 16px 0;
+    .addons-table th:last-child { text-align: right; }
+    .addons-table td {
+      font-size: 12px;
+      padding: 14px 0;
       border-bottom: 1px solid var(--light-grey);
       color: var(--black);
+      line-height: 1.5;
     }
-    .travel-table td:last-child {
+    .addons-table td:last-child {
       text-align: right;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
+      font-size: 20px;
+      white-space: nowrap;
+      padding-left: 24px;
+    }
+    .addons-table td small {
+      display: block;
+      font-size: 10px;
+      color: var(--grey);
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 2px;
     }
     .pricing-note {
       margin-top: 48px;
@@ -423,7 +462,6 @@
       .nav-cta { display: none; }
       #page-header { padding: 140px 32px 32px; }
       #packages { padding: 48px 32px 80px; }
-      #travel { padding: 64px 32px; }
       .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
       .pricing-card.featured { margin: -16px 0; }
       footer { flex-direction: column; gap: 32px; text-align: center; padding: 48px 32px; }
@@ -595,29 +633,66 @@
   <div class="pricing-disclaimer">
     <p>Prices are subject to change based on the needs of your wedding event — please enquire further.</p>
   </div>
-</section>
 
-<!-- TRAVEL FEES -->
-<section id="travel">
-  <p class="section-label">Travel</p>
-  <h2 class="section-title">Travel <em>Fees</em></h2>
-  <p class="section-body">Coverage anywhere within 40km of the Sydney CBD is included in every package. Beyond that, a travel fee applies based on distance.</p>
+  <div class="addons">
+    <p class="addons-title" onclick="toggleAddons(this)">
+      Optional Add-Ons
+      <svg width="12" height="7" viewBox="0 0 12 7" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l5 5 5-5"/></svg>
+    </p>
+    <div class="addons-body">
+      <table class="addons-table">
+        <thead>
+          <tr>
+            <th>Add-On</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Additional Photographer</td>
+            <td>$299</td>
+          </tr>
+          <tr>
+            <td>Additional Hour</td>
+            <td>$149</td>
+          </tr>
+          <tr>
+            <td>Social Media Highlight Images Reel<small>Up to 30 seconds</small></td>
+            <td>$249</td>
+          </tr>
+          <tr>
+            <td>Social Media Highlight Video Clips Reel<small>30–60 seconds</small></td>
+            <td>$299</td>
+          </tr>
+          <tr>
+            <td>Extended Highlight Film<small>2–3 minutes · requires additional videographer hire</small></td>
+            <td>$449</td>
+          </tr>
+          <tr>
+            <td>Express Delivery<small>Within 72 hours</small></td>
+            <td>$149</td>
+          </tr>
+        </tbody>
+      </table>
 
-  <table class="travel-table">
-    <thead>
-      <tr>
-        <th>Distance from Sydney CBD</th>
-        <th>Travel Fee</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>0–40 km</td><td>Included</td></tr>
-      <tr><td>41–60 km</td><td>+$50</td></tr>
-      <tr><td>61–80 km</td><td>+$100</td></tr>
-      <tr><td>81–100 km</td><td>+$150</td></tr>
-      <tr><td>100 km+</td><td>Custom quote</td></tr>
-    </tbody>
-  </table>
+      <p class="pricing-sub-label" style="margin-top: 32px;">Travel Fees</p>
+      <table class="addons-table">
+        <thead>
+          <tr>
+            <th>Distance from Sydney CBD</th>
+            <th>Travel Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0–40 km</td><td>Included</td></tr>
+          <tr><td>41–60 km</td><td>+$50</td></tr>
+          <tr><td>61–80 km</td><td>+$100</td></tr>
+          <tr><td>81–100 km</td><td>+$150</td></tr>
+          <tr><td>100 km+</td><td>Custom quote</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <p class="pricing-note">
     Not sure which package is right for your day? <a href="index.html#contact" style="color: var(--black); border-bottom: 1px solid var(--grey);">Get in touch</a> —
@@ -649,6 +724,12 @@
     hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open');
   });
+
+  // Collapsible Add-Ons
+  function toggleAddons(el) {
+    el.classList.toggle('open');
+    el.nextElementSibling.classList.toggle('open');
+  }
 </script>
 </body>
 </html>
