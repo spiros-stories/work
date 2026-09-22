@@ -608,6 +608,25 @@
     .addons {
       margin-top: 64px;
     }
+    .section-crosslink {
+      margin-bottom: 40px;
+      padding: 22px 28px;
+      background: rgba(10,10,10,0.04);
+      border-left: 3px solid var(--accent);
+      text-align: center;
+    }
+    .section-crosslink p {
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: var(--black);
+      letter-spacing: 0.02em;
+    }
+    .section-crosslink a {
+      color: var(--black);
+      border-bottom: 1px solid var(--accent);
+      text-decoration: none;
+    }
+    .section-crosslink a:hover { color: var(--accent); }
     .addons-title {
       font-size: 9px;
       font-weight: 500;
@@ -935,7 +954,7 @@
   <ul class="nav-links">
     <li><a href="#gallery">Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#pricing">Events</a></li>
     <li><a href="weddings-pricing.html">Weddings</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -948,7 +967,7 @@
 <div class="mobile-menu" id="mobile-menu">
   <a href="#gallery" onclick="closeMenu()">Work</a>
   <a href="#about" onclick="closeMenu()">About</a>
-  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#pricing" onclick="closeMenu()">Events</a>
   <a href="weddings-pricing.html" onclick="closeMenu()">Weddings</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
   <a href="#contact" onclick="closeMenu()" style="color:var(--accent);">Book a Session</a>
@@ -1057,6 +1076,10 @@
       Three packages built around the size and feel of your event.
       All packages include a private online gallery and high-resolution downloads.
     </p>
+  </div>
+
+  <div class="section-crosslink">
+    <p>Planning an elopement or intimate wedding instead? <a href="weddings-pricing.html">See Wedding Pricing →</a></p>
   </div>
 
   <div class="pricing-grid">
@@ -1172,12 +1195,29 @@
           </tr>
         </tbody>
       </table>
+
+      <p class="pricing-sub-label" style="margin-top: 32px;">Travel Fees</p>
+      <table class="addons-table">
+        <thead>
+          <tr>
+            <th>Distance from Sydney CBD</th>
+            <th>Travel Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0–40 km</td><td>Included</td></tr>
+          <tr><td>41–60 km</td><td>+$50</td></tr>
+          <tr><td>61–80 km</td><td>+$100</td></tr>
+          <tr><td>81–100 km</td><td>+$150</td></tr>
+          <tr><td>100 km+</td><td>Custom quote</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <p class="pricing-note">
     Not sure which package is right for you? <a href="#contact" style="color: var(--black); border-bottom: 1px solid var(--grey);">Get in touch</a> — I'm happy to build something around your event.<br>
-    Travel fees may apply beyond 30km from Sydney CBD.
+    Travel fees may apply beyond 40km from Sydney CBD — see Optional Add-Ons above for the full breakdown.
   </p>
 </section>
 
@@ -1288,7 +1328,7 @@
   <ul class="footer-links">
     <li><a href="#gallery">Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#pricing">Events</a></li>
     <li><a href="weddings-pricing.html">Weddings</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://instagram.com/spiros.stories" target="_blank">Instagram</a></li>
