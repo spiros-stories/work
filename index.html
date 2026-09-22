@@ -475,6 +475,12 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 2px;
     }
+    @media (min-width: 1025px) {
+      /* Cards carry their own 40px padding, which otherwise makes card
+         text sit 40px right of the section heading/body text above.
+         Bleed the grid out by that same amount so everything lines up. */
+      .pricing-grid { margin: 0 -40px; }
+    }
     .pricing-card {
       background: var(--white);
       padding: 48px 40px;
