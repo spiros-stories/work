@@ -133,10 +133,28 @@
     .mobile-menu a:last-child { border-bottom: none; }
     .mobile-menu a:hover { color: var(--accent); }
 
+    /* ─── TITLE PAGE HERO ────────────────────────────── */
+    .title-hero {
+      width: 100%;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 73px; /* nav height */
+    }
+    .title-hero img {
+      display: block;
+      max-width: 100%;
+      max-height: 100vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
     /* ─── PAGE HERO ───────────────────────────────────── */
     .page-hero {
       padding-top: 80px;
-      padding: 140px 80px 80px;
+      padding: 80px 80px 60px;
       border-bottom: 1px solid var(--light-grey);
     }
     .back-link {
@@ -508,6 +526,11 @@
   <a href="index.html#contact">Book Now</a>
 </div>
 
+<!-- TITLE PAGE HERO -->
+<div class="title-hero">
+  <img src="title-page.png" alt="Zack &amp; Silvia — Hyams Beach NSW — Envizion Studios Sneak Peek" />
+</div>
+
 <!-- PAGE HERO -->
 <div class="page-hero">
   <a href="index.html#gallery" class="back-link">
@@ -519,11 +542,11 @@
   <div class="page-hero-inner">
     <div>
       <p class="page-eyebrow">Wedding Photography</p>
-      <h1 class="page-title">A day of<br><em>love &amp; light</em></h1>
+      <h1 class="page-title">Zack &amp; Silvia<br><em>Hyams Beach · NSW</em></h1>
       <div class="sneak-badge">Sneak Peek</div>
     </div>
     <div class="page-hero-meta">
-      <p>10 images</p>
+      <p>7 images</p>
       <p>Coming Soon — Full Gallery</p>
     </div>
   </div>
@@ -535,7 +558,7 @@
 
     <!-- Counter -->
     <div class="carousel-counter">
-      <span id="currentSlide">1</span> / 10
+      <span id="currentSlide">1</span> / 7
     </div>
 
     <!-- Prev -->
@@ -580,7 +603,7 @@
 
       <!-- Slide 3 -->
       <div class="carousel-slide" data-index="2">
-        <img src="wedding-03.jpg" alt="Wedding photo 3"
+        <img src="wedding-03.png" alt="Wedding photo 3"
              loading="lazy" onload="this.classList.add('loaded')"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
         <div class="carousel-placeholder" style="display:none">
@@ -653,51 +676,6 @@
         </div>
       </div>
 
-      <!-- Slide 8 -->
-      <div class="carousel-slide" data-index="7">
-        <img src="wedding-08.jpg" alt="Wedding photo 8"
-             loading="lazy" onload="this.classList.add('loaded')"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-        <div class="carousel-placeholder" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="1"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-          <span>wedding-08.jpg</span>
-        </div>
-      </div>
-
-      <!-- Slide 9 -->
-      <div class="carousel-slide" data-index="8">
-        <img src="wedding-09.jpg" alt="Wedding photo 9"
-             loading="lazy" onload="this.classList.add('loaded')"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-        <div class="carousel-placeholder" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="1"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-          <span>wedding-09.jpg</span>
-        </div>
-      </div>
-
-      <!-- Slide 10 -->
-      <div class="carousel-slide" data-index="9">
-        <img src="wedding-10.jpg" alt="Wedding photo 10"
-             loading="lazy" onload="this.classList.add('loaded')"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-        <div class="carousel-placeholder" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="1"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-          <span>wedding-10.jpg</span>
-        </div>
-      </div>
-
     </div><!-- /track -->
 
     <!-- Next -->
@@ -711,7 +689,7 @@
 
   <!-- Caption -->
   <div class="carousel-caption">
-    <span class="caption-label" id="slideCaption">Photo 1 of 10</span>
+    <span class="caption-label" id="slideCaption">Photo 1 of 7</span>
     <span class="caption-hint">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M9 18l6-6-6-6"/>
@@ -765,7 +743,7 @@
   const dotsWrap = document.getElementById('carouselDots');
   const counter  = document.getElementById('currentSlide');
   const caption  = document.getElementById('slideCaption');
-  const total    = 10;
+  const total    = 7;
   let current    = 0;
   let isAnimating = false;
 
