@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weddings — Envizion Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --grey: #888;
+      --light-grey: #e8e8e8;
+      --accent: #c9a96e;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(250,250,250,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--black);
+    }
+    .logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 4px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--black);
+      padding: 12px 24px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--black);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 65px; left: 0; right: 0;
+      background: rgba(250,250,250,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-grey);
+      z-index: 99;
+      flex-direction: column;
+      padding: 16px 32px 24px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--light-grey);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─── PAGE HERO ───────────────────────────────────── */
+    .page-hero {
+      padding-top: 80px;
+      padding: 140px 80px 80px;
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--grey);
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg { width: 14px; height: 14px; }
+    .page-hero-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .page-eyebrow {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 300;
+      line-height: 1.05;
+    }
+    .page-title em { font-style: italic; }
+    .sneak-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      margin-top: 20px;
+    }
+    .sneak-badge::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--white);
+      border-radius: 50%;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+    .page-hero-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .page-hero-meta p {
+      font-size: 11px;
+      color: var(--grey);
+      line-height: 2;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── CAROUSEL ────────────────────────────────────── */
+    .carousel-section {
+      padding: 80px 0 120px;
+    }
+    .carousel-wrapper {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      background: #111;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 85vh;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .carousel-slide img.loaded { opacity: 1; }
+
+    /* Placeholder when no image yet */
+    .carousel-placeholder {
+      width: 100%;
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      color: rgba(255,255,255,0.15);
+      gap: 16px;
+    }
+    .carousel-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.2;
+    }
+    .carousel-placeholder span {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    /* Slide counter overlay */
+    .carousel-counter {
+      position: absolute;
+      top: 32px;
+      right: 48px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.55);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .carousel-counter span { color: var(--white); }
+
+    /* Prev / Next buttons */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(250,250,250,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--white);
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      backdrop-filter: blur(8px);
+    }
+    .carousel-btn:hover {
+      background: rgba(201,169,110,0.28);
+      border-color: var(--accent);
+    }
+    .carousel-btn svg { width: 20px; height: 20px; }
+    .carousel-prev { left: 40px; }
+    .carousel-next { right: 40px; }
+    .carousel-btn:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    /* Dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 36px;
+      padding: 0 80px;
+    }
+    .carousel-dot {
+      width: 28px;
+      height: 2px;
+      background: var(--light-grey);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, width 0.3s;
+      padding: 0;
+    }
+    .carousel-dot.active {
+      background: var(--accent);
+      width: 44px;
+    }
+
+    /* Caption strip */
+    .carousel-caption {
+      padding: 32px 80px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .caption-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--black);
+      letter-spacing: 0.03em;
+    }
+    .caption-hint {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--grey);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .caption-hint svg { width: 14px; opacity: 0.4; }
+
+    /* ─── CTA STRIP ───────────────────────────────────── */
+    .cta-strip {
+      background: var(--black);
+      padding: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-strip-text {}
+    .cta-strip .section-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .cta-strip h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .cta-strip h2 em { font-style: italic; }
+    .cta-strip-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .btn-primary {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--accent);
+      padding: 16px 32px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: #b8924f; }
+    .btn-outline {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 48px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .footer-copy {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 20px 32px; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .page-hero { padding: 120px 32px 60px; }
+      .page-hero-inner { flex-direction: column; align-items: flex-start; }
+      .page-hero-meta { text-align: left; }
+      .carousel-btn { width: 44px; height: 44px; }
+      .carousel-prev { left: 16px; }
+      .carousel-next { right: 16px; }
+      .carousel-caption { padding: 24px 32px 0; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .carousel-dots { padding: 0 32px; }
+      .cta-strip { padding: 60px 32px; flex-direction: column; align-items: flex-start; }
+      footer { padding: 40px 32px; flex-direction: column; gap: 24px; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      .carousel-slide img { height: 60vh; }
+      .carousel-placeholder { height: 60vh; }
+      .carousel-counter { top: 16px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-main">Envizion Studios</span>
+    <span class="logo-sub">Photography &amp; Film</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#gallery">Gallery</a></li>
+    <li><a href="weddings-pricing.html">Weddings</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Book Now</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#gallery">Gallery</a>
+  <a href="weddings-pricing.html">Weddings</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#pricing">Pricing</a>
+  <a href="index.html#contact">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <a href="index.html#gallery" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+    </svg>
+    Back to Gallery
+  </a>
+  <div class="page-hero-inner">
+    <div>
+      <p class="page-eyebrow">Wedding Photography</p>
+      <h1 class="page-title">A day of<br><em>love &amp; light</em></h1>
+      <div class="sneak-badge">Sneak Peek</div>
+    </div>
+    <div class="page-hero-meta">
+      <p>10 images</p>
+      <p>Coming Soon — Full Gallery</p>
+    </div>
+  </div>
+</div>
+
+<!-- CAROUSEL -->
+<section class="carousel-section">
+  <div class="carousel-wrapper" id="carouselWrapper">
+
+    <!-- Counter -->
+    <div class="carousel-counter">
+      <span id="currentSlide">1</span> / 10
+    </div>
+
+    <!-- Prev -->
+    <button class="carousel-btn carousel-prev" id="prevBtn" aria-label="Previous photo" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <!-- Track -->
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- Slide 1 -->
+      <div class="carousel-slide" data-index="0">
+        <img src="wedding-01.jpg" alt="Wedding photo 1"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-01.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide" data-index="1">
+        <img src="wedding-02.jpg" alt="Wedding photo 2"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-02.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide" data-index="2">
+        <img src="wedding-03.jpg" alt="Wedding photo 3"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-03.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide" data-index="3">
+        <img src="wedding-04.jpg" alt="Wedding photo 4"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-04.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="carousel-slide" data-index="4">
+        <img src="wedding-05.jpg" alt="Wedding photo 5"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-05.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="carousel-slide" data-index="5">
+        <img src="wedding-06.jpg" alt="Wedding photo 6"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-06.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 7 -->
+      <div class="carousel-slide" data-index="6">
+        <img src="wedding-07.jpg" alt="Wedding photo 7"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-07.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 8 -->
+      <div class="carousel-slide" data-index="7">
+        <img src="wedding-08.jpg" alt="Wedding photo 8"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-08.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 9 -->
+      <div class="carousel-slide" data-index="8">
+        <img src="wedding-09.jpg" alt="Wedding photo 9"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-09.jpg</span>
+        </div>
+      </div>
+
+      <!-- Slide 10 -->
+      <div class="carousel-slide" data-index="9">
+        <img src="wedding-10.jpg" alt="Wedding photo 10"
+             loading="lazy" onload="this.classList.add('loaded')"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="carousel-placeholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>wedding-10.jpg</span>
+        </div>
+      </div>
+
+    </div><!-- /track -->
+
+    <!-- Next -->
+    <button class="carousel-btn carousel-next" id="nextBtn" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+
+  </div><!-- /wrapper -->
+
+  <!-- Caption -->
+  <div class="carousel-caption">
+    <span class="caption-label" id="slideCaption">Photo 1 of 10</span>
+    <span class="caption-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+      Use arrows to browse
+    </span>
+  </div>
+
+  <!-- Dots -->
+  <div class="carousel-dots" id="carouselDots"></div>
+
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="cta-strip-text">
+    <p class="section-label">Ready to Book?</p>
+    <h2>Let's capture your<br><em>perfect day</em></h2>
+  </div>
+  <div class="cta-strip-actions">
+    <a href="weddings-pricing.html" class="btn-primary">View Wedding Packages</a>
+    <a href="index.html#contact" class="btn-outline">Get in Touch</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Envizion Studios</a>
+  <ul class="footer-links">
+    <li><a href="index.html#gallery">Gallery</a></li>
+    <li><a href="weddings-pricing.html">Weddings</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">&copy; 2025 Envizion Studios</p>
+</footer>
+
+<script>
+  // ─── Mobile menu ─────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // ─── Carousel ────────────────────────────────────────
+  const track    = document.getElementById('carouselTrack');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const dotsWrap = document.getElementById('carouselDots');
+  const counter  = document.getElementById('currentSlide');
+  const caption  = document.getElementById('slideCaption');
+  const total    = 10;
+  let current    = 0;
+  let isAnimating = false;
+
+  // Build dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  }
+
+  function getDots() { return dotsWrap.querySelectorAll('.carousel-dot'); }
+
+  function goTo(index) {
+    if (isAnimating || index === current) return;
+    isAnimating = true;
+    current = index;
+
+    track.style.transform = `translateX(-${current * 100}%)`;
+
+    // Update counter
+    counter.textContent = current + 1;
+    caption.textContent = `Photo ${current + 1} of ${total}`;
+
+    // Update dots
+    getDots().forEach((d, i) => d.classList.toggle('active', i === current));
+
+    // Update buttons
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+
+    setTimeout(() => { isAnimating = false; }, 620);
+  }
+
+  prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
+  nextBtn.addEventListener('click', () => { if (current < total - 1) goTo(current + 1); });
+
+  // Keyboard nav
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' && current > 0)        goTo(current - 1);
+    if (e.key === 'ArrowRight' && current < total-1) goTo(current + 1);
+  });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  const wrapper = document.getElementById('carouselWrapper');
+  wrapper.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  wrapper.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && current < total - 1) goTo(current + 1);
+      if (diff < 0 && current > 0)        goTo(current - 1);
+    }
+  });
+</script>
+</body>
+</html>

@@ -257,6 +257,41 @@
       margin-bottom: 56px;
     }
 
+    /* Featured wedding card — full width */
+    .portfolio-card.wedding-card {
+      grid-column: 1 / -1;
+      aspect-ratio: 21/9;
+    }
+    .portfolio-card.wedding-card .portfolio-title {
+      font-size: 42px;
+    }
+    .wedding-sneak-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      margin-bottom: 12px;
+    }
+    .wedding-sneak-badge::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      background: var(--white);
+      border-radius: 50%;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1005,6 +1040,18 @@
     <h2 class="section-title">Browse by <em>occasion</em></h2>
   </div>
   <div class="portfolio-grid">
+
+    <!-- FEATURED: Weddings Sneak Peek -->
+    <a href="gallery-weddings.html" class="portfolio-card wedding-card">
+      <img src="wedding-thumbnail.jpg"
+           alt="Weddings" loading="lazy" onload="this.classList.add('loaded')" />
+      <div class="portfolio-overlay"></div>
+      <div class="portfolio-info">
+        <div class="wedding-sneak-badge">Sneak Peek</div>
+        <h3 class="portfolio-title">Weddings</h3>
+        <span class="portfolio-cta">View Gallery</span>
+      </div>
+    </a>
 
     <a href="gallery-birthdays.html" class="portfolio-card">
       <img src="birthday-thumbnail.jpg"
