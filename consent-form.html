@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photo Usage Consent — Spiridion Fernando Photography</title>
+  <title>Client Agreement — Spiridion Fernando Photography</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap">
   <style>
     :root {
-      --bg: #faf9f6;
-      --fg: #1a1a18;
-      --muted: #6b6b66;
-      --rule: #e2ddd6;
-      --check-bg: #f0ede8;
-      --badge-yes: #2d5a3d;
-      --badge-no: #5a2d2d;
+      --bg: #faf9f6; --fg: #1a1a18; --muted: #6b6b66;
+      --rule: #e2ddd6; --check-bg: #f0ede8;
+      --badge-yes: #2d5a3d; --badge-no: #5a2d2d;
       color-scheme: light;
     }
     @media (prefers-color-scheme: dark) {
@@ -34,17 +30,15 @@
     body {
       background: var(--bg); color: var(--fg);
       font-family: 'Montserrat', sans-serif; font-weight: 300;
-      padding: 48px 24px; max-width: 680px; margin: 0 auto; line-height: 1.7;
+      padding: 48px 24px; max-width: 700px; margin: 0 auto; line-height: 1.7;
     }
     header { text-align: center; padding-bottom: 32px; border-bottom: 1px solid var(--rule); margin-bottom: 40px; }
     header a { display: inline-block; margin-bottom: 20px; }
     header img { height: 64px; width: auto; }
-    header h1 {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      font-size: clamp(1.5rem, 5vw, 2rem); letter-spacing: 0.04em; line-height: 1.2;
-    }
+    header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 5vw, 2.2rem); letter-spacing: 0.04em; line-height: 1.2; }
     header p { font-size: 0.78rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.02em; }
-    .section { margin-bottom: 36px; }
+
+    .section { margin-bottom: 40px; }
     .section-label {
       font-family: 'Cormorant Garamond', serif; font-size: 0.65rem;
       letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
@@ -60,6 +54,35 @@
     .field input:focus, .field select:focus { outline: 1px solid var(--fg); outline-offset: 1px; }
     .row { display: flex; gap: 16px; flex-wrap: wrap; }
     .row .field { flex: 1; min-width: 0; }
+
+    /* T&C scroll box */
+    .tnc-box {
+      background: var(--check-bg); border: 1px solid var(--rule); border-radius: 2px;
+      padding: 20px 22px; max-height: 340px; overflow-y: auto;
+      font-size: 0.78rem; line-height: 1.75; color: var(--muted);
+      scroll-behavior: smooth;
+    }
+    .tnc-box h3 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 400;
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--fg); margin: 20px 0 6px;
+    }
+    .tnc-box h3:first-child { margin-top: 0; }
+    .tnc-box p { margin-bottom: 8px; }
+    .tnc-box strong { color: var(--fg); font-weight: 500; }
+
+    .tnc-agree {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-top: 14px; padding: 14px 16px;
+      background: var(--check-bg); border: 1px solid var(--rule); border-radius: 2px;
+      cursor: pointer; transition: border-color 0.15s;
+    }
+    .tnc-agree:has(input:checked) { border-color: var(--fg); }
+    .tnc-agree input { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; accent-color: var(--fg); }
+    .tnc-agree-text { font-size: 0.78rem; line-height: 1.55; }
+    .tnc-agree-text strong { font-weight: 500; display: block; margin-bottom: 2px; }
+
+    /* Consent checkboxes */
     .consent-options { display: flex; flex-direction: column; gap: 12px; }
     .consent-option {
       display: flex; align-items: flex-start; gap: 14px;
@@ -76,14 +99,16 @@
       line-height: 1.6; margin-top: 8px; border-radius: 0 2px 2px 0;
     }
     .privacy-note strong { color: var(--fg); }
-    .signature-area { display: flex; flex-direction: column; gap: 6px; }
+
+    /* Signature */
     .sig-box {
       background: var(--check-bg); border: 1px solid var(--rule); border-radius: 2px;
-      height: 80px; display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+      height: 80px; display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
     #sig-preview { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; font-weight: 300; color: var(--fg); display: none; }
     #sig-placeholder { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    /* Buttons */
     .submit-row { display: flex; justify-content: flex-end; gap: 12px; padding-top: 8px; align-items: center; flex-wrap: wrap; }
     .btn-submit {
       background: var(--fg); color: var(--bg); border: none; padding: 13px 32px;
@@ -96,40 +121,46 @@
       padding: 12px 20px; font-family: 'Montserrat', sans-serif; font-size: 0.7rem;
       letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 2px;
     }
+
+    /* Confirmation */
     #confirmation { text-align: center; padding: 60px 20px; display: none; flex-direction: column; align-items: center; gap: 16px; }
     #confirmation .tick { font-size: 2.5rem; line-height: 1; }
     #confirmation h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; letter-spacing: 0.04em; }
-    #confirmation p { font-size: 0.8rem; color: var(--muted); max-width: 380px; line-height: 1.7; }
+    #confirmation p { font-size: 0.8rem; color: var(--muted); max-width: 400px; line-height: 1.7; }
     .summary-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 40px; }
     .badge-yes { background: var(--badge-yes); color: #7dcca0; }
     .badge-no  { background: var(--badge-no);  color: #cc7d7d; }
     #summary-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 4px; }
+
     footer {
       margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule);
       font-size: 0.68rem; color: var(--muted); text-align: center; line-height: 1.8; letter-spacing: 0.03em;
     }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--fg); }
-    /* Formspree hidden fields */
-    input[name="_hidden"] { display: none; }
+
+    /* Formspree error banner */
+    [data-fs-error]:not(:empty) {
+      padding: 12px 16px; background: #fdf0f0; border-left: 3px solid #c0392b;
+      font-size: 0.75rem; color: #c0392b; margin-bottom: 16px; border-radius: 2px;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <a href="index.html"><img src="logo-light.png" alt="Spiridion Fernando Photography"></a>
-  <h1>Photo Usage Consent</h1>
-  <p>Please complete this form before or at the time of your session. Your privacy matters.</p>
+  <h1>Client Agreement</h1>
+  <p>Please read the terms below, select your photo usage preferences, and sign to confirm. A copy will be sent to you and to Spiridion.</p>
 </header>
 
 <div id="form-wrapper">
-  <div data-fs-error style="display:none; padding:12px 16px; background:#fdf0f0; border-left:3px solid #c0392b; font-size:12px; color:#c0392b; margin-bottom:16px; border-radius:2px;"></div>
+  <div data-fs-error></div>
 
-  <form id="consent-form" action="https://formspree.io/f/mqeokgkd" method="POST">
-    <!-- Tell Formspree the subject line -->
-    <input type="hidden" name="_subject" value="Photo Usage Consent Form Submission">
+  <form id="agreement-form" action="https://formspree.io/f/mqeokgkd" method="POST">
+    <input type="hidden" name="_subject" value="Client Agreement Signed">
 
-    <!-- Client details -->
+    <!-- 1. Client Details -->
     <div class="section">
       <p class="section-label">Client Details</p>
       <div class="row">
@@ -138,8 +169,8 @@
           <input type="text" id="name" name="name" placeholder="Your full name" required>
         </div>
         <div class="field">
-          <label for="date">Session Date</label>
-          <input type="date" id="date" name="session_date" required>
+          <label for="session-date">Session Date</label>
+          <input type="date" id="session-date" name="session_date" required>
         </div>
       </div>
       <div class="row">
@@ -161,7 +192,7 @@
         </div>
         <div class="field">
           <label for="subject">Primary Subject(s)</label>
-          <input type="text" id="subject" name="primary_subjects" placeholder="e.g. Emily & James, or Baby Noah">
+          <input type="text" id="subject" name="primary_subjects" placeholder="e.g. Emily & James, Baby Noah">
         </div>
       </div>
       <div class="field">
@@ -170,18 +201,65 @@
       </div>
     </div>
 
-    <!-- Usage consent -->
+    <!-- 2. Terms & Conditions -->
     <div class="section">
-      <p class="section-label">Photo Usage Permissions</p>
-      <p style="font-size:0.78rem; color:var(--muted); margin-bottom:18px; line-height:1.6;">
-        Select all that apply. You may update your preferences at any time by contacting Spiridion directly.
-      </p>
+      <p class="section-label">Terms & Conditions</p>
+      <p style="font-size:0.78rem; color:var(--muted); margin-bottom:14px; line-height:1.6;">Please read the following carefully before signing.</p>
+
+      <div class="tnc-box">
+        <h3>1. Booking & Deposit</h3>
+        <p>A <strong>50% non-refundable deposit</strong> is required to secure your booking and confirm your session date. Your date is not held until the deposit has been received. The deposit is applied toward your total package fee.</p>
+
+        <h3>2. Payment</h3>
+        <p>The <strong>remaining balance is due within 7 days of your gallery being delivered</strong>. All payments are to be made to the Spiridion Fernando Photography bank account details provided in your quote, via direct bank transfer or PayID. Late payments may result in your gallery access being withheld until the balance is cleared.</p>
+
+        <h3>3. Cancellation</h3>
+        <p>If you need to cancel your session, please notify Spiridion Fernando Photography as soon as possible. The 50% deposit is non-refundable under any circumstances. If you cancel with less than <strong>7 days' notice</strong>, the full session fee may be charged.</p>
+
+        <h3>4. Rescheduling</h3>
+        <p>You may reschedule your session once without penalty, provided you give at least <strong>48 hours' notice</strong>. The deposit will transfer to your new date. Requests to reschedule with less than 48 hours' notice may be treated as a cancellation.</p>
+
+        <h3>5. Gallery Delivery</h3>
+        <p>Edited photos will be delivered via a private Pixieset gallery link within <strong>2–3 weeks</strong> of your session date, depending on volume and time of year. You will receive an email when your gallery is ready. Gallery links are valid for 30 days — please download your images promptly.</p>
+
+        <h3>6. Edited Images & RAW Files</h3>
+        <p>You will receive professionally edited JPEG images selected by Spiridion Fernando Photography. The number of delivered images depends on the session and package. <strong>RAW (unedited) files are not provided.</strong> Editing style, selection, and delivery format are at the photographer's professional discretion.</p>
+
+        <h3>7. Copyright & Licence</h3>
+        <p>Spiridion Fernando Photography retains full copyright of all images captured during your session. You are granted a <strong>personal, non-commercial licence</strong> to print and share your photos for personal use (social media, family sharing, personal print). Images may not be sold, licensed to a third party, or used for commercial purposes without written permission.</p>
+
+        <h3>8. On the Day</h3>
+        <p>Please ensure the session location and any participants are ready at the agreed start time. Session time lost due to late arrival or delays outside the photographer's control will not be extended or refunded. The photographer reserves the right to reschedule if weather or safety conditions make the session impractical.</p>
+
+        <h3>9. Photographer Unavailability</h3>
+        <p>In the unlikely event that Spiridion Fernando Photography is unable to attend due to illness, emergency, or circumstances beyond their control, you will be offered a full refund of any payments made or the option to reschedule at no additional cost.</p>
+
+        <h3>10. Children & Privacy</h3>
+        <p>Photos of children will <strong>never</strong> be posted publicly without the explicit written consent of a parent or guardian. If no consent is given, all images remain private and are shared only with the client through their private gallery.</p>
+
+        <h3>11. Governing Law</h3>
+        <p>This agreement is governed by the laws of New South Wales, Australia. Any disputes will be handled in accordance with NSW law.</p>
+      </div>
+
+      <label class="tnc-agree">
+        <input type="checkbox" name="terms_agreed" value="Yes — I have read and agree to the Terms and Conditions" required>
+        <div class="tnc-agree-text">
+          <strong>I have read and agree to the Terms & Conditions above.</strong>
+          I understand the payment, cancellation, copyright, and delivery terms outlined.
+        </div>
+      </label>
+    </div>
+
+    <!-- 3. Photo Usage Consent -->
+    <div class="section">
+      <p class="section-label">Photo Usage Consent</p>
+      <p style="font-size:0.78rem; color:var(--muted); margin-bottom:18px; line-height:1.6;">Select all that apply. You may update your preferences at any time by contacting Spiridion directly.</p>
       <div class="consent-options">
         <label class="consent-option">
           <input type="checkbox" name="permission_portfolio" value="Yes">
           <div class="consent-option-text">
             <strong>Portfolio & Website</strong>
-            <span>Photos may be featured on the Spiridion Fernando Photography website to showcase my work.</span>
+            <span>Photos may be featured on the Spiridion Fernando Photography website to showcase work.</span>
           </div>
         </label>
         <label class="consent-option">
@@ -200,15 +278,15 @@
         </label>
       </div>
       <div class="privacy-note" style="margin-top:16px;">
-        <strong>If you select none of the above</strong>, your photos will remain completely private. They will only be shared with you directly through your private gallery and will never be posted publicly. <strong>Photos of children are never posted without explicit consent.</strong>
+        <strong>If you select none of the above</strong>, your photos will remain completely private. They will only be shared with you through your private Pixieset gallery and will never be posted publicly. <strong>Photos of children are never posted without explicit consent.</strong>
       </div>
     </div>
 
-    <!-- Signature -->
+    <!-- 4. Signature -->
     <div class="section">
       <p class="section-label">Signature</p>
-      <div class="signature-area">
-        <div class="field" style="margin-bottom:10px;">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="field" style="margin-bottom:0;">
           <label for="sig-input">Type your full name to sign</label>
           <input type="text" id="sig-input" name="signature" placeholder="Full name" autocomplete="off" required>
         </div>
@@ -217,23 +295,24 @@
           <span id="sig-preview"></span>
         </div>
         <p style="font-size:0.68rem; color:var(--muted); letter-spacing:0.04em;">
-          By signing, you confirm the details above are correct and agree to the selected usage permissions.
+          By signing and submitting this form, you confirm that you have read and agree to the Terms & Conditions, and that your selected photo usage permissions above are accurate.
         </p>
       </div>
     </div>
 
     <div class="submit-row">
-      <button type="button" class="btn-reset" onclick="document.getElementById('consent-form').reset(); updateSig();">Clear</button>
-      <button type="submit" class="btn-submit">Submit Consent Form</button>
+      <button type="button" class="btn-reset" onclick="document.getElementById('agreement-form').reset(); updateSig();">Clear</button>
+      <button type="submit" class="btn-submit">Sign & Submit</button>
     </div>
   </form>
 
-  <!-- Confirmation (shown after Formspree success) -->
+  <!-- Confirmation -->
   <div id="confirmation" data-fs-success>
     <div class="tick">✓</div>
-    <h2>Consent Recorded</h2>
-    <p>Thank you — your preferences have been saved and a copy has been sent to Spiridion. Questions? Reach out at any time.</p>
+    <h2>Agreement Signed</h2>
+    <p>Thank you — your signed agreement has been received by Spiridion Fernando Photography. A copy has been noted for your session record.</p>
     <div id="summary-badges"></div>
+    <p style="margin-top:8px; font-size:0.75rem;">Questions? Reach out to Spiridion at spiridionfernando@gmail.com</p>
     <p style="margin-top:16px;"><a href="index.html" style="color:var(--muted); font-size:0.75rem; letter-spacing:0.06em;">← Back to website</a></p>
   </div>
 </div>
@@ -241,8 +320,7 @@
 <footer>
   Spiridion Fernando Photography &nbsp;·&nbsp; spiridionfernando@gmail.com<br>
   Your information is kept private and used only as indicated above.
-  <br><br>
-  <a href="index.html">← Back to website</a>
+  <br><br><a href="index.html">← Back to website</a>
 </footer>
 
 <script>
@@ -263,8 +341,7 @@
   }
   sigInput.addEventListener('input', updateSig);
 
-  // Build badge summary on submit for confirmation panel
-  document.getElementById('consent-form').addEventListener('submit', function() {
+  document.getElementById('agreement-form').addEventListener('submit', function() {
     const perms = [
       { name: 'permission_portfolio', label: 'Portfolio' },
       { name: 'permission_instagram', label: 'Instagram' },
@@ -295,7 +372,7 @@
   window.addEventListener('load', function() {
     if (window.formspree) {
       window.formspree = window.formspree || function() { (formspree.q = formspree.q || []).push(arguments); };
-      formspree('initForm', { formElement: '#consent-form', formId: 'mqeokgkd' });
+      formspree('initForm', { formElement: '#agreement-form', formId: 'mqeokgkd' });
     }
   });
 </script>
